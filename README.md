@@ -73,3 +73,152 @@ Obs: É obrigatório o uso de loops aninhados na movimentação do bispo e funç
 Ao concluir este desafio, você terá um conhecimento mais profundo de estruturas complexas e elaboradas, amplamente utilizadas no mercado de trabalho. Boa sorte e boa programação!
 
 Equipe de Ensino - MateCheck
+
+## Como este README está organizado
+
+Este README foi expandido para explicar, passo a passo, a lógica implementada no código fonte (`xadrez.c`) para o **Nível Novato**, além de fornecer instruções de compilação, saída esperada e sugestões de extensão para os níveis seguintes.
+
+Estrutura do documento:
+- Visão geral do desafio
+- Explicação detalhada do Nível Novato (variáveis, loops e saídas)
+- Como compilar e executar
+- Exemplo de saída esperada
+- Sugestões para continuar (Aventureiro / Mestre)
+
+---
+
+## Documentação detalhada — Nível Novato
+
+O objetivo do Nível Novato é demonstrar o uso de constantes e estruturas de repetição para simular movimentos simples de peças de xadrez.
+
+Arquivos relevantes:
+- `xadrez.c` — implementa a simulação do Nível Novato.
+
+Lógica aplicada no `xadrez.c` (explicação linha-a-linha / seção-a-seção):
+
+1) Declaração de constantes
+
+```c
+const int BISPO_PASSOS = 5;
+const int TORRE_PASSOS = 5;
+const int RAINHA_PASSOS = 8;
+```
+
+- Por que constantes?: facilitem a leitura e a manutenção do código. Se for necessário alterar quantas casas cada peça se move, basta atualizar essas constantes.
+
+2) Cabeçalho de execução
+
+```c
+printf("Nível Novato - Movimentação das Peças\\n\\n");
+```
+
+- Objetivo: informar ao usuário qual parte do exercício está sendo executada.
+
+3) Movimentação do Bispo
+
+O bispo se move em diagonal. No exercício simplificamos a direção para "cima" + "direita".
+
+```c
+printf("Bispo: %d casas na diagonal superior direita\\n", BISPO_PASSOS);
+for (i = 1; i <= BISPO_PASSOS; ++i) {
+      printf("  Passo %d: Cima Direita\\n", i);
+}
+```
+
+- Explicação: usamos um `for` para iterar do passo 1 até `BISPO_PASSOS`. Em cada iteração imprimimos uma linha descrevendo o passo e a direção combinada "Cima Direita".
+
+4) Movimentação da Torre
+
+```c
+printf("Torre: %d casas para a direita\\n", TORRE_PASSOS);
+for (i = 1; i <= TORRE_PASSOS; ++i) {
+      printf("  Passo %d: Direita\\n", i);
+}
+```
+
+- Explicação: a torre se move em linha reta — aqui simulada apenas para a direção "Direita". Novamente, um `for` controla o número de passos.
+
+5) Movimentação da Rainha
+
+```c
+printf("Rainha: %d casas para a esquerda\\n", RAINHA_PASSOS);
+for (i = 1; i <= RAINHA_PASSOS; ++i) {
+      printf("  Passo %d: Esquerda\\n", i);
+}
+```
+
+- Explicação: a rainha combina movimentos da torre e do bispo; no Nível Novato simulamos apenas a movimentação para a esquerda.
+
+6) Observações sobre design
+
+- Simplicidade intencional: o exercício foca no uso de loops; não há um tabuleiro nem verificação de colisões.
+- Saída textual: cada linha descreve um passo, o que facilita leitura por humanos e testes automatizados.
+
+---
+
+## Como compilar e executar
+
+Para compilar e executar localmente (GNU/Linux / macOS), use o GCC. Esses comandos também funcionam no terminal do container de desenvolvimento:
+
+```bash
+gcc -Wall -Wextra -o xadrez xadrez.c
+./xadrez
+```
+
+- `-Wall -Wextra` ativa avisos úteis do compilador para manter a qualidade do código.
+
+## Exemplo de saída esperada (Nível Novato)
+
+Ao executar o programa, a saída no terminal deve ser semelhante a:
+
+```
+Nível Novato - Movimentação das Peças
+
+Bispo: 5 casas na diagonal superior direita
+   Passo 1: Cima Direita
+   Passo 2: Cima Direita
+   Passo 3: Cima Direita
+   Passo 4: Cima Direita
+   Passo 5: Cima Direita
+
+Torre: 5 casas para a direita
+   Passo 1: Direita
+   Passo 2: Direita
+   Passo 3: Direita
+   Passo 4: Direita
+   Passo 5: Direita
+
+Rainha: 8 casas para a esquerda
+   Passo 1: Esquerda
+   Passo 2: Esquerda
+   Passo 3: Esquerda
+   Passo 4: Esquerda
+   Passo 5: Esquerda
+   Passo 6: Esquerda
+   Passo 7: Esquerda
+   Passo 8: Esquerda
+```
+
+---
+
+## Próximos passos (sugestões de implementação)
+
+- Nível Aventureiro (Cavalo): implementar movimento em 'L' usando loops aninhados (ex.: `for` aninhado combinando deslocamento vertical e horizontal). O README do nível pede que o cavalo se mova para baixo e para a esquerda.
+- Nível Mestre: substituir as simulações simples por funções recursivas para o Bispo e usar loops com múltiplas variáveis/condições para o Cavalo; incluir `continue` e `break` para demonstrar controle avançado de loop.
+
+Dicas de implementação:
+- Para o Cavalo, pense em representar um pequeno padrão de deslocamentos (ex.: deltaX, deltaY) e iterar sobre esse conjunto com loops aninhados.
+- Para recursão do Bispo, a função pode receber os passos restantes e imprimir a direção até chegar a zero.
+
+## Testes rápidos
+
+- Teste manual: compilar e executar, validar que o número de linhas corresponde às constantes declaradas.
+- Teste automatizado simples: redirecionar saída para um arquivo e usar `grep -c "Passo"` para contar o número total de passos e compará-lo com o esperado.
+
+## Contribuição
+
+Se quiser que eu estenda a solução para os níveis Aventureiro ou Mestre, com testes e pequenas funções auxiliares, responda qual nível prefere implementar em seguida. Posso também abrir um branch e preparar um PR com a implementação e testes básicos.
+
+---
+
+Equipe de Ensino - MateCheck

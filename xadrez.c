@@ -5,28 +5,47 @@
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
 int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
+    /*
+     * Nível Novato - Movimentação das Peças
+     *
+     * Requisitos (conforme README):
+     *  - Bispo: 5 casas na diagonal superior direita
+     *  - Torre: 5 casas para a direita
+     *  - Rainha: 8 casas para a esquerda
+     *
+     * Os movimentos devem ser simulados usando estruturas de repetição
+     * e imprimir as direções usando as strings básicas: Cima, Baixo, Esquerda, Direita
+     */
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
+    const int BISPO_PASSOS = 5;
+    const int TORRE_PASSOS = 5;
+    const int RAINHA_PASSOS = 8;
 
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
+    int i;
 
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
+    printf("Nível Novato - Movimentação das Peças\n\n");
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
+    /* Movimentação do Bispo: diagonal para cima e para a direita */
+    printf("Bispo: %d casas na diagonal superior direita\n", BISPO_PASSOS);
+    for (i = 1; i <= BISPO_PASSOS; ++i) {
+        /* combinação de direções básicas em uma única saída */
+        printf("  Passo %d: Cima Direita\n", i);
+    }
+    printf("\n");
 
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
+    /* Movimentação da Torre: para a direita */
+    printf("Torre: %d casas para a direita\n", TORRE_PASSOS);
+    for (i = 1; i <= TORRE_PASSOS; ++i) {
+        printf("  Passo %d: Direita\n", i);
+    }
+    printf("\n");
 
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
+    /* Movimentação da Rainha: para a esquerda */
+    printf("Rainha: %d casas para a esquerda\n", RAINHA_PASSOS);
+    for (i = 1; i <= RAINHA_PASSOS; ++i) {
+        printf("  Passo %d: Esquerda\n", i);
+    }
+    printf("\n");
 
     return 0;
 }
