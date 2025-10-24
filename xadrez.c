@@ -47,5 +47,35 @@ int main() {
     }
     printf("\n");
 
+    /* Nível Aventureiro - Movimentação do Cavalo (movimento em 'L')
+     * Requisito: utilizar loops aninhados; um deles deve ser `for` e o outro
+     * pode ser `while` ou `do-while`. O cavalo se moverá para baixo e para a esquerda.
+     *
+     * Estratégia aqui (simples e didática):
+     * - Cada movimento em 'L' é composto por 2 passos para baixo seguidos de 1 passo para a esquerda.
+     * - Usamos um `for` externo para controlar quantos movimentos em 'L' serão realizados
+     *   (variável CAVALO_MOVIMENTOS).
+     * - Dentro do `for` usamos um `while` para executar os 2 passos 'para baixo' (loop aninhado).
+     */
+
+    const int CAVALO_MOVIMENTOS = 2; /* número de movimentos em 'L' que o cavalo fará */
+    const int CAVALO_PASSOS_BAIXO = 2; /* passos verticais (para baixo) por movimento em 'L' */
+
+    printf("Cavalo: %d movimentos em 'L' (cada L = %d baixo + 1 esquerda)\n", CAVALO_MOVIMENTOS, CAVALO_PASSOS_BAIXO);
+    int mov;
+    for (mov = 1; mov <= CAVALO_MOVIMENTOS; ++mov) {
+        /* loop aninhado: while para os passos verticais */
+        int passos_baixo = CAVALO_PASSOS_BAIXO;
+        int seq = 1;
+        while (passos_baixo > 0) {
+            printf("  Movimento %d - Passo %d.%d: Baixo\n", mov, mov, seq);
+            passos_baixo--;
+            seq++;
+        }
+        /* após os passos para baixo, faz 1 passo para a esquerda */
+        printf("  Movimento %d - Passo %d.%d: Esquerda\n", mov, mov, seq);
+    }
+    printf("\n");
+
     return 0;
 }

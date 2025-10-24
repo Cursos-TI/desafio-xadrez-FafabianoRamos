@@ -210,6 +210,64 @@ Dicas de implementação:
 - Para o Cavalo, pense em representar um pequeno padrão de deslocamentos (ex.: deltaX, deltaY) e iterar sobre esse conjunto com loops aninhados.
 - Para recursão do Bispo, a função pode receber os passos restantes e imprimir a direção até chegar a zero.
 
+### Documentação detalhada — Nível Aventureiro (Cavalo)
+
+Nesta seção descrevemos em detalhes como o Nível Aventureiro foi implementado em `xadrez.c`.
+
+Objetivo: simular movimentos em 'L' do cavalo, seguindo a especificação do desafio (movimentar para baixo e para a esquerda), e usar pelo menos dois tipos de loops aninhados — no caso, um `for` e um `while`.
+
+Estrutura usada no código:
+
+- Constantes:
+
+```c
+const int CAVALO_MOVIMENTOS = 2; /* número de movimentos em 'L' */
+const int CAVALO_PASSOS_BAIXO = 2; /* passos verticais (para baixo) por movimento em 'L' */
+```
+
+- Lógica (resumo):
+   1. Um `for` externo itera sobre cada movimento em 'L' que o cavalo deve executar.
+   2. Para cada movimento do `for`, um `while` interno executa os passos verticais "Baixo" (2 passos neste exemplo).
+   3. Após os passos verticais, o código imprime um passo horizontal "Esquerda" para completar o 'L'.
+
+Trecho de código (explicativo) presente em `xadrez.c`:
+
+```c
+printf("Cavalo: %d movimentos em 'L' (cada L = %d baixo + 1 esquerda)\\n", CAVALO_MOVIMENTOS, CAVALO_PASSOS_BAIXO);
+int mov;
+for (mov = 1; mov <= CAVALO_MOVIMENTOS; ++mov) {
+      int passos_baixo = CAVALO_PASSOS_BAIXO;
+      int seq = 1;
+      while (passos_baixo > 0) {
+            printf("  Movimento %d - Passo %d.%d: Baixo\\n", mov, mov, seq);
+            passos_baixo--;
+            seq++;
+      }
+      printf("  Movimento %d - Passo %d.%d: Esquerda\\n", mov, mov, seq);
+}
+```
+
+Explicações adicionais:
+- Por que `for` + `while`?: O enunciado pede o uso de pelo menos duas estruturas de repetição diferentes e aninhadas. O `for` serve para controlar quantos movimentos (unidades em 'L') serão feitos. O `while` demonstra controle de condição variável dentro do movimento.
+- Como adaptar para outro padrão?: Alterando `CAVALO_PASSOS_BAIXO` você muda quantos passos verticais ocorrem antes da transição horizontal. Alterando `CAVALO_MOVIMENTOS` você controla quantos 'L' serão executados.
+- Simplicidade e finalidade pedagógica: a implementação é intencionalmente textual e linear para focar no uso de loops aninhados; não há representação de um tabuleiro nem checagem de limites ou colisões.
+
+Exemplo de saída gerada pelo programa (trecho):
+
+```
+Cavalo: 2 movimentos em 'L' (cada L = 2 baixo + 1 esquerda)
+   Movimento 1 - Passo 1.1: Baixo
+   Movimento 1 - Passo 1.2: Baixo
+   Movimento 1 - Passo 1.3: Esquerda
+   Movimento 2 - Passo 2.1: Baixo
+   Movimento 2 - Passo 2.2: Baixo
+   Movimento 2 - Passo 2.3: Esquerda
+```
+
+Notas de extensão:
+- Para uma modelagem mais realista, poderíamos representar o tabuleiro como uma matriz 8x8 e aplicar os deslocamentos do cavalo validando limites e colisões.
+- Outra variação é usar `do-while` no lugar do `while` para demonstrar essa estrutura específica.
+
 ## Testes rápidos
 
 - Teste manual: compilar e executar, validar que o número de linhas corresponde às constantes declaradas.
